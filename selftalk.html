@@ -7,13 +7,11 @@
 </body>
 
 <template name="hello">
-	<div id="welcome">
-	  <h1>Hello World!</h1>
- 		{{greeting}}
-	</div>
 	<div id="text-input">
-		<input type="text" id="input" placeholder="Type something" />
-  	<input type="button" value="Submit!" />
+		<form>
+			<input type="text" id="input" placeholder="Type something" />
+  		<input type="button" value="Submit!" />
+	</form>
 	</div>
 	{{> line_list}}
 </template>
