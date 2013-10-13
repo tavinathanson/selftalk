@@ -8,11 +8,17 @@
 </head>
 
 <body>
-  {{> line_input}}
+	<div id="line-window">
+ 	 {{> line_window}}
+	</div>
 </body>
 
+<template name="line_window">
+	{{> line_output}}
+	{{> line_input}}
+</template>
+
 <template name="line_input">
-	{{> line_list}}
 	<div id="line-input">
 		<form>
 			<input type="text" id="line" placeholder="Type a line..." />
@@ -21,8 +27,8 @@
 	</div>
 </template>
 
-<template name="line_list">
-	<div id="line-list">
+<template name="line_output">
+	<div id="line-output">
 		{{#each lines}}
 			<ul>
 				{{> line_text}}

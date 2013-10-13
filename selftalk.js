@@ -10,7 +10,7 @@ if (Meteor.isClient) {
 		}
 	});
 
-	Template.line_list.lines = function () {
+	Template.line_output.lines = function () {
 		return Lines.find({});
 	};
 }
