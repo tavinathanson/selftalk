@@ -3,4 +3,33 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
-@import "compass/reset";
+@import "compass/css3";
+@import "sassy-buttons";
+
+.lines_container {
+	@include box-sizing(border-box);
+	@include border-radius(25px);
+	background: #dddddd;
+  padding: 20px;
+  border: 10px solid #333333;
+  margin: 10px;
+  width: 300px;
+	font: {
+		family: "Helvetica", "Arial", sans-serif;
+		size: 10pt;
+	}
+}
+
+.button_container {
+	text-align: center;
+	vertical-align: middle;
+	margin-top: 20px;
+}
+
+.button {
+	@include sassy-button-structure(20px, 20px);
+	@include sassy-button-gradient("glass", #4cae5f);
+	width: 220px;
+	font-size: 14pt;
+	padding: 15px;
+}
