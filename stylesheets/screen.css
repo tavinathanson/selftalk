@@ -13,11 +13,11 @@
   padding: 20px;
   border: 10px solid #333333;
   margin: 10px;
-  width: 500px;
-  height: 300px;
+  width: 520px;
+  height: 320px;
 }
 
-/* line 19, ../sass/screen.scss */
+/* line 23, ../sass/screen.scss */
 #line-output {
   width: 500px;
   height: 300px;
@@ -26,7 +26,7 @@
   font-size: 10pt;
 }
 
-/* line 29, ../sass/screen.scss */
+/* line 33, ../sass/screen.scss */
 .button {
   font-size: 5px;
   padding: 0.5em 1.5em;
