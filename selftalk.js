@@ -5,6 +5,9 @@ if (Meteor.isClient) {
 		'submit' : function() {
     	Lines.insert({text: line.value});
 
+			// FIXME: Doesn't work
+			updateScroll();
+
 			// Prevent the page from reloading on submit
 			return false;
 		}
@@ -20,3 +23,9 @@ if (Meteor.isServer) {
     // No startup code, currently.
   });
 }
+
+function updateScroll(){
+	var element = document.getElementById("line-output");
+	element.scrollTop = element.scrollHeight;
+}
+
