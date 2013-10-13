@@ -3,28 +3,31 @@
 </head>
 
 <body>
-  {{> hello}}
+  {{> line_input}}
 </body>
 
-<template name="hello">
-	<div id="text-input">
+<template name="line_input">
+	<div id="line-input">
 		<form>
-			<input type="text" id="input" placeholder="Type something" />
+			<input type="text" id="line" placeholder="Type a line..." />
   		<input type="button" value="Submit!" />
-	</form>
+		</form>
 	</div>
 	{{> line_list}}
 </template>
 
 <template name="line_list">
-	{{#each lines}}
-		<ul>
-			{{> line_text}}
-		</ul>
-	{{else}}
-		No lines yet.
-	{{/each}}
+	<div id="line-list">
+		{{#each lines}}
+			<ul>
+				{{> line_text}}
+			</ul>
+		{{else}}
+			No lines yet.
+		{{/each}}
+	</div>
 </template>
+
 <template name="line_text">
 	<li>
 		{{text}}
