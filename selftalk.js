@@ -5,8 +5,9 @@ if (Meteor.isClient) {
 		'submit' : function() {
     	Lines.insert({text: line.value});
 
-			// FIXME: Doesn't work
-			updateScroll();
+			var output = $('#line-output');
+			var height = output[0].scrollHeight;
+			output.scrollTop(height);
 
 			// Prevent the page from reloading on submit
 			return false;
@@ -22,10 +23,5 @@ if (Meteor.isServer) {
   Meteor.startup(function () {
     // No startup code, currently.
   });
-}
-
-function updateScroll(){
-	var element = document.getElementById("line-output");
-	element.scrollTop = element.scrollHeight;
 }
 
