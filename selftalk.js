@@ -11,8 +11,9 @@ if (Meteor.isClient) {
 	});
 
 	Template.line_output.rendered = function () {
-		// FIXME: Turn this into a constant, for find a better way since I'm not sure this works cross-browser
- 		$("#line-output").scrollTop(99999);
+		// Set the scrollTop to the entire height of the content, which will scroll the div down to the bottom
+		// See: http://labs.revelationglobal.com/2010/02/04/javascript_scrolling_geometry.html
+ 		$("#line-output").scrollTop($("#line-output")[0].scrollHeight);
 	};
 
 	Template.line_output.lines = function () {
