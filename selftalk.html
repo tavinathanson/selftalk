@@ -21,21 +21,21 @@
 <template name="line_input">
 	<div id="line-input">
 		<form>
-			<input type="text" id="line" placeholder="Type a line..." />
-  		<input type="submit" class="button" value="Submit!" />
+			<input type="text" id="line" placeholder="Type here..." />
+  		<input type="submit" value="Submit!" />
 		</form>
 	</div>
 </template>
 
 <template name="line_output">
 	<div id="line-output">
-		{{#each lines}}
-			<ul>
+		<ul>
+			{{#each lines}}
 				{{> line_text}}
-			</ul>
-		{{else}}
-			No lines yet.
-		{{/each}}
+			{{else}}
+				No lines yet.
+			{{/each}}
+		</ul>
 	</div>
 </template>
 

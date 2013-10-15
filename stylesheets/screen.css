@@ -3,83 +3,120 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 /* line 9, ../sass/screen.scss */
-#line-window {
+input[type=text] {
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   -ms-border-radius: 25px;
   -o-border-radius: 25px;
   border-radius: 25px;
-  background: #dddddd;
-  padding: 20px;
-  border: 10px solid #333333;
-  margin: 10px;
-  width: 520px;
-  height: 320px;
+  border: 1px solid #aaaaaa;
+  height: 30px;
+  width: 300px;
+  font-size: 14pt;
+  margin: 0px;
+  padding: 0px 10px 0px 10px;
 }
 
-/* line 23, ../sass/screen.scss */
-#line-output {
-  width: 500px;
-  height: 300px;
-  overflow: scroll;
-  font-family: "Helvetica", "Arial", sans-serif;
-  font-size: 10pt;
-}
-
-/* line 33, ../sass/screen.scss */
-.button {
-  font-size: 5px;
+/* line 19, ../sass/screen.scss */
+input[type=submit] {
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF33AA99', endColorstr='#FF1B5C52');
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(50%, #40c6b3), color-stop(51%, #33aa99));
+  background: -webkit-linear-gradient(#40c6b3 50%, #33aa99 51%);
+  background: -moz-linear-gradient(#40c6b3 50%, #33aa99 51%);
+  background: -o-linear-gradient(#40c6b3 50%, #33aa99 51%);
+  background: linear-gradient(#40c6b3 50%, #33aa99 51%);
+  -webkit-box-shadow: #7bd7ca 0 1px 0 inset;
+  -moz-box-shadow: #7bd7ca 0 1px 0 inset;
+  box-shadow: #7bd7ca 0 1px 0 inset;
+  border: 1px solid #2d9687;
+  color: white;
+  text-shadow: #1e645a 0 -1px 0;
+  font-size: 25px;
   padding: 0.5em 1.5em;
   display: inline-block;
   cursor: pointer;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  border-radius: 25px;
+  width: 150px;
+  font-size: 14pt;
+  height: 30px;
+  margin: 0px;
+  padding: 0px 10px 0px 10px;
+}
+/* line 15, ../../../../../.rvm/gems/ruby-2.0.0-p247/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
+input[type=submit]:hover {
+  text-decoration: none;
+}
+/* line 30, ../../../../../.rvm/gems/ruby-2.0.0-p247/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
+input[type=submit]:hover {
+  background-color: #2b8f80;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(50%, #34ae9d), color-stop(51%, #2b8f80));
+  background: -webkit-linear-gradient(#34ae9d 50%, #2b8f80 51%);
+  background: -moz-linear-gradient(#34ae9d 50%, #2b8f80 51%);
+  background: -o-linear-gradient(#34ae9d 50%, #2b8f80 51%);
+  background: linear-gradient(#34ae9d 50%, #2b8f80 51%);
+}
+/* line 33, ../../../../../.rvm/gems/ruby-2.0.0-p247/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
+input[type=submit]:active {
+  -webkit-box-shadow: #2a8b7d 0 1px 2px inset;
+  -moz-box-shadow: #2a8b7d 0 1px 2px inset;
+  box-shadow: #2a8b7d 0 1px 2px inset;
+}
+/* line 6, ../../../../../.rvm/gems/ruby-2.0.0-p247/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
+input[type=submit].disabled, input[type=submit][disabled] {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6;
+  background: #33aa99;
+  cursor: default;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* line 32, ../sass/screen.scss */
+#line-output {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  *zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF666666', endColorstr='#FF333333');
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(50%, #7a7a7a), color-stop(51%, #666666));
-  background: -webkit-linear-gradient(#7a7a7a 50%, #666666 51%);
-  background: -moz-linear-gradient(#7a7a7a 50%, #666666 51%);
-  background: -o-linear-gradient(#7a7a7a 50%, #666666 51%);
-  background: linear-gradient(#7a7a7a 50%, #666666 51%);
-  -webkit-box-shadow: #a1a1a1 0 1px 0 inset;
-  -moz-box-shadow: #a1a1a1 0 1px 0 inset;
-  box-shadow: #a1a1a1 0 1px 0 inset;
-  border: 1px solid #595959;
-  color: white;
-  text-shadow: #393939 0 -1px 0;
-  width: 150px;
-  font-size: 14pt;
+  background: #eeeeee;
+  border: 1px solid #000066;
+  width: 700px;
+  height: 400px;
+  overflow: scroll;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 10pt;
+}
+
+/* line 45, ../sass/screen.scss */
+#line-input {
+  padding: 10px;
+}
+
+/* line 49, ../sass/screen.scss */
+li:nth-child(even) {
+  background: #eeeeff;
+}
+
+/* line 50, ../sass/screen.scss */
+li:nth-child(odd) {
+  background: #ddddff;
+}
+
+/* line 52, ../sass/screen.scss */
+ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* line 58, ../sass/screen.scss */
+li {
   padding: 5px;
-}
-/* line 15, ../../../../../.rvm/gems/ruby-2.0.0-p247/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
-.button:hover {
-  text-decoration: none;
-}
-/* line 30, ../../../../../.rvm/gems/ruby-2.0.0-p247/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
-.button:hover {
-  background-color: #545454;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(50%, #696969), color-stop(51%, #545454));
-  background: -webkit-linear-gradient(#696969 50%, #545454 51%);
-  background: -moz-linear-gradient(#696969 50%, #545454 51%);
-  background: -o-linear-gradient(#696969 50%, #545454 51%);
-  background: linear-gradient(#696969 50%, #545454 51%);
-}
-/* line 33, ../../../../../.rvm/gems/ruby-2.0.0-p247/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
-.button:active {
-  -webkit-box-shadow: #525252 0 1px 2px inset;
-  -moz-box-shadow: #525252 0 1px 2px inset;
-  box-shadow: #525252 0 1px 2px inset;
-}
-/* line 6, ../../../../../.rvm/gems/ruby-2.0.0-p247/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
-.button.disabled, .button[disabled] {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
-  opacity: 0.6;
-  background: #666666;
-  cursor: default;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+  line-height: 20px;
 }
