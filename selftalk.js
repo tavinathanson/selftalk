@@ -4,8 +4,9 @@ if (Meteor.isClient) {
 	Template.line_input.events({
 		'submit' : function() {
     	Lines.insert({text: line.value});
-	
-			// Prevent the page from reloading on submit
+
+			// Clear the text field, and prevent the page from reloading on submit
+			line.value = "";
 			return false;
 		}
 	});
