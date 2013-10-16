@@ -1,5 +1,11 @@
 Lines = new Meteor.Collection("lines");
 
+Lines.allow({
+  insert: function (userId, line) {
+    return line.text.length <= 500;
+  }
+});
+
 if (Meteor.isClient) {
 	Template.line_input.events({
 		'submit' : function() {
