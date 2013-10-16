@@ -1,3 +1,9 @@
 Code Quality:
 
+- Limit lines to N lines per window, where it's a rolling N
+- Do not allow empty lines to be submitted client- or server-side
+- Fix CSS alignment of the submit button
+- Fix background color of output region
+- Fix alignment and color of loading text
+- Sanitize data to prevent SQL injection and other vulnerabilities
 - Address TODO's and FIXME's
