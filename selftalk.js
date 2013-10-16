@@ -1,7 +1,9 @@
 Lines = new Meteor.Collection("lines");
 
 Lines.allow({
+	// TODO: Consider using Collection2 to handle this type of thing, rather than manually writing these validation functions
   insert: function (userId, line) {
+		// TODO: Turn this into a constant, here and for the HTML element's line
 		return line.text.length <= 500;
 	}
 });
@@ -9,7 +11,7 @@ Lines.allow({
 if (Meteor.isClient) {
 	Template.line_input.events({
 		'submit' : function() {
-    	Lines.insert({text: line.value});
+			Lines.insert({date_created: new Date(), text: line.value});
 
 			// Clear the text field, and prevent the page from reloading on submit
 			line.value = "";
@@ -24,7 +26,15 @@ if (Meteor.isClient) {
 	};
 
 	Template.line_output.lines = function () {
-		return Lines.find({}, {sort: {$natural: 1}});
+		// FIXME: This assumes that every single element in the DB has a date_created, but what if that isn't true? For example, when the
+		// app was first written, that field didn't exist.
+		// TODO: For performance reasons, specify the fields I want in the find()
+		var lines = Lines.find({}, {sort: {date_created: -1}, limit: 20});
+
+		// FIXME: Need to actually reverse these lines, now
+		var reverseLines = lines;
+
+		return reverseLines;
 	};
 }
 
