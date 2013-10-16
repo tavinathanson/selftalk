@@ -2,7 +2,7 @@ Lines = new Meteor.Collection("lines");
 
 Lines.allow({
   insert: function (userId, line) {
-		return line.textlength <= 500;
+		return line.text.length <= 500;
 	}
 });
 
