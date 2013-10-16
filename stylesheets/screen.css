@@ -2,7 +2,10 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 9, ../sass/screen.scss */
+/* Adopted from:
+ * http://kenneth.io/blog/2012/03/04/word-wrapping-hypernation-using-css/
+ * http://www.impressivewebs.com/new-css3-text-wrap/ */
+/* line 24, ../sass/screen.scss */
 input[type=text] {
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
@@ -17,7 +20,7 @@ input[type=text] {
   padding: 0px 10px 0px 10px;
 }
 
-/* line 19, ../sass/screen.scss */
+/* line 34, ../sass/screen.scss */
 input[type=submit] {
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF33AA99', endColorstr='#FF1B5C52');
@@ -77,13 +80,22 @@ input[type=submit].disabled, input[type=submit][disabled] {
   box-shadow: none;
 }
 
-/* line 32, ../sass/screen.scss */
+/* line 47, ../sass/screen.scss */
 #line-output {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   background: #eeeeee;
   border: 1px solid #000066;
   width: 700px;
@@ -93,30 +105,30 @@ input[type=submit].disabled, input[type=submit][disabled] {
   font-size: 10pt;
 }
 
-/* line 45, ../sass/screen.scss */
+/* line 61, ../sass/screen.scss */
 #line-input {
   padding: 10px;
 }
 
-/* line 49, ../sass/screen.scss */
+/* line 65, ../sass/screen.scss */
 li:nth-child(even) {
   background: #eeeeff;
 }
 
-/* line 50, ../sass/screen.scss */
+/* line 66, ../sass/screen.scss */
 li:nth-child(odd) {
   background: #ddddff;
 }
 
-/* line 52, ../sass/screen.scss */
+/* line 68, ../sass/screen.scss */
 ul {
   list-style-type: none;
   margin: 0px;
   padding: 0px;
 }
 
-/* line 58, ../sass/screen.scss */
+/* line 74, ../sass/screen.scss */
 li {
-  padding: 5px;
+  padding: 8px 15px 8px 8px;
   line-height: 20px;
 }

@@ -2,8 +2,8 @@ Lines = new Meteor.Collection("lines");
 
 Lines.allow({
   insert: function (userId, line) {
-    return line.text.length <= 500;
-  }
+		return line.textlength <= 500;
+	}
 });
 
 if (Meteor.isClient) {
@@ -24,7 +24,7 @@ if (Meteor.isClient) {
 	};
 
 	Template.line_output.lines = function () {
-		return Lines.find({});
+		return Lines.find({}, {sort: {$natural: 1}});
 	};
 }
 

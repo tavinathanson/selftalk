@@ -6,6 +6,21 @@
 @import "compass/css3";
 @import "sassy-buttons";
 
+/* Adopted from:
+ * http://kenneth.io/blog/2012/03/04/word-wrapping-hypernation-using-css/
+ * http://www.impressivewebs.com/new-css3-text-wrap/ */
+@mixin wrap() {
+	 -ms-word-break: break-all;
+			 word-break: break-all;
+			 word-break: break-word;
+	-webkit-hyphens: auto;
+		 -moz-hyphens: auto;
+			-ms-hyphens: auto;
+					hyphens: auto;
+				word-wrap: break-word;
+		overflow-wrap: break-word;
+}
+
 input[type=text] {
 	@include border-radius(25px);
 	border: 1px solid #aaaaaa;
@@ -31,6 +46,7 @@ input[type=submit] {
 
 #line-output {
 	@include border-radius(5px);
+	@include wrap;
 	background: #eeeeee;
 	border: 1px solid #000066;
   width: 700px;
@@ -56,6 +72,6 @@ ul {
 }
 
 li {
-	padding: 5px;
+	padding: 8px 15px 8px 8px;
 	line-height: 20px;
 }
