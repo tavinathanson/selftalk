@@ -8,22 +8,29 @@ Lines = new Meteor.Collection("lines");
 
 // TODO: Consider using Collection2 to handle this type of thing, rather than manually writing these validation functions
 Lines.allow({
+	// In addition to client-side checks, we also need server-side validation
   insert: function (userId, line) {
-			// TODO: Is this necessary? I'm confused about client-side vs. server-side when it comes to allow/deny functions.
-			return trimValidate(line.text).validated;
+		// FIXME: I can't use $.trim on the server-side. Oops!
+		// return isValid($.trim(line.text));
+		return isValid(line.text);
 	}
 });
+
+// Is the text a valid line?
+var isValid = function (text) {
+	return text.length > 0 | text.length <= constants.getMaxLineLength();
+}
 
 if (Meteor.isClient) {
 	Template.line_input.events({
 		'submit' : function() {
-			/* Trim the whitespace off the input, and short-circuit if the input is empty or too long
-			 * (without clearing the text field or submitting).
+			/* Client-side validation: trim the whitespace off the input, and short-circuit if the input is
+			 * empty or too long (without clearing the text field or submitting).
 			 * TODO: Need any error messages around this? */
-			var trimValidateObj = trimValidate(line.value);
-			if (!trimValidateObj.validated) { return false; }
+			var trimmed = $.trim(line.value);
+			if (!isValid(trimmed)) { return false; }
 
-			var trimmed = trimValidateObj.trimmed;
+			// Insert the trimmed text, with the current date
 			Lines.insert({date_created: new Date(), text: trimmed});
 
 			// Clear the text field, and prevent the page from reloading on submit
@@ -61,11 +68,4 @@ if (Meteor.isServer) {
   Meteor.startup(function () {
     // No startup code, currently.
   });
-}
-
-/* First attempt at a method to use both client-side and server-side, though it doesn't work or make sense right now. */
-var trimValidate = new function (text) {
-	var trimmed = $.trim(text);
-	var validated = !(trimmed.length == 0 | trimmed.length > constants.getMaxLineLength());
-	return {trimmed: trimmed, validated: validated};
 }
