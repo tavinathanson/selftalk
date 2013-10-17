@@ -1,10 +1,15 @@
+// Some file-scope constants
+var constants = new (function() {
+    this.getMaxLineLength = function() { return 500; };
+		this.getNumLinesShown = function() { return 20; };
+})();
+
 Lines = new Meteor.Collection("lines");
 
+// TODO: Consider using Collection2 to handle this type of thing, rather than manually writing these validation functions
 Lines.allow({
-	// TODO: Consider using Collection2 to handle this type of thing, rather than manually writing these validation functions
   insert: function (userId, line) {
-		// TODO: Turn this into a constant, here and for the HTML element's line
-		return line.text.length <= 500;
+		return line.text.length <= constants.getMaxLineLength();
 	}
 });
 
@@ -29,7 +34,7 @@ if (Meteor.isClient) {
 		// Get the most recently created N lines by sorting in reverse-chronological order
 		/* FIXME: This assumes that every single element in the DB has a date_created, but what if that isn't true? For example, when the
 		 * app was first written, that field didn't exist. */
-		var lines = Lines.find({}, {fields: {text: 1, date_created: 1}, sort: {date_created: -1}, limit: 20});
+		var lines = Lines.find({}, {fields: {text: 1, date_created: 1}, sort: {date_created: -1}, limit: constants.getNumLinesShown()});
 
 		// Reverse the lines back (to regular chronological order) by creating a new array and sorting it
 		/* NOTE: Since find(...) returns a cursor, and Meteor doesn't currently support the Mongo sort function, this array-conversion
@@ -40,6 +45,8 @@ if (Meteor.isClient) {
 
 		return linesArr;
 	};
+
+	Template.line_input.max_length = constants.getMaxLineLength();
 }
 
 if (Meteor.isServer) {
