@@ -10,8 +10,7 @@ Lines = new Meteor.Collection("lines");
 Lines.allow({
   insert: function (userId, line) {
 			// TODO: Is this necessary? I'm confused about client-side vs. server-side when it comes to allow/deny functions.
-			var trimmed = $.trim(line.text);
-			if (trimmed.length == 0 | trimmed.length > constants.getMaxLineLength()) { return false; }
+			return trimValidate(line.text).validated;
 	}
 });
 
@@ -21,10 +20,11 @@ if (Meteor.isClient) {
 			/* Trim the whitespace off the input, and short-circuit if the input is empty or too long
 			 * (without clearing the text field or submitting).
 			 * TODO: Need any error messages around this? */
-			var trimmed = $.trim(line.value);
-			if (trimmed.length == 0 | trimmed.length > constants.getMaxLineLength()) { return false; }
+			var trimValidateObj = trimValidate(line.value);
+			if (!trimValidateObj.validated) { return false; }
 
-			Lines.insert({date_created: new Date(), text: line.value});
+			var trimmed = trimValidateObj.trimmed;
+			Lines.insert({date_created: new Date(), text: trimmed});
 
 			// Clear the text field, and prevent the page from reloading on submit
 			line.value = "";
@@ -63,3 +63,9 @@ if (Meteor.isServer) {
   });
 }
 
+/* First attempt at a method to use both client-side and server-side, though it doesn't work or make sense right now. */
+var trimValidate = new function (text) {
+	var trimmed = $.trim(text);
+	var validated = !(trimmed.length == 0 | trimmed.length > constants.getMaxLineLength());
+	return {trimmed: trimmed, validated: validated};
+}
