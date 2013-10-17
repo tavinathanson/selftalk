@@ -10,15 +10,19 @@ Lines = new Meteor.Collection("lines");
 Lines.allow({
 	// In addition to client-side checks, we also need server-side validation
   insert: function (userId, line) {
-		// FIXME: I can't use $.trim on the server-side. Oops!
-		// return isValid($.trim(line.text));
-		return isValid(line.text);
+		return isValid(trim(line.text));
 	}
 });
 
 // Is the text a valid line?
 var isValid = function (text) {
-	return text.length > 0 | text.length <= constants.getMaxLineLength();
+	return text.length > 0 && text.length <= constants.getMaxLineLength();
+}
+
+// Trim the whitespace off a string
+// TODO: Use a library method that works client-side and server-side
+var trim = function (str) {
+	return str.replace(/^\s+|\s+$/g,"");
 }
 
 if (Meteor.isClient) {
@@ -27,7 +31,7 @@ if (Meteor.isClient) {
 			/* Client-side validation: trim the whitespace off the input, and short-circuit if the input is
 			 * empty or too long (without clearing the text field or submitting).
 			 * TODO: Need any error messages around this? */
-			var trimmed = $.trim(line.value);
+			var trimmed = trim(line.value);
 			if (!isValid(trimmed)) { return false; }
 
 			// Insert the trimmed text, with the current date
