@@ -20,31 +20,22 @@ if (Meteor.isClient) {
 	});
 
 	Template.line_output.rendered = function () {
-		// Set the scrollTop to the entire height of the content, which will scroll the div down to the bottom
-		// See: http://labs.revelationglobal.com/2010/02/04/javascript_scrolling_geometry.html
+		/* Set the scrollTop to the entire height of the content, which will scroll the div down to the bottom
+		 * See: http://labs.revelationglobal.com/2010/02/04/javascript_scrolling_geometry.html */
  		$("#line-output").scrollTop($("#line-output")[0].scrollHeight);
 	};
 
 	Template.line_output.lines = function () {
-		// FIXME: This assumes that every single element in the DB has a date_created, but what if that isn't true? For example, when the
-		// app was first written, that field didn't exist.
-		// TODO: For performance reasons, specify the fields I want in the find()
-		var lines = Lines.find({}, {sort: {date_created: -1}, limit: 20});
+		/* FIXME: This assumes that every single element in the DB has a date_created, but what if that isn't true? For example, when the
+		 * app was first written, that field didn't exist. */
+		var lines = Lines.find({}, {fields: {text: 1, date_created: 1}, sort: {date_created: -1}, limit: 20});
 
-		// TODO: Simplify the code below
+		// Reverse the lines back (to regular chronological order) by creating a new array and sorting it
+		/* NOTE: Since find(...) returns a cursor, and Meteor doesn't currently support the Mongo sort function, this array-conversion
+		 * appears to be necessary. Is it? */
 		var linesArr = new Array();
-		lines.forEach(function (data) {
-			linesArr.push(data);
-		});
-		linesArr.sort(function(a, b) {
-			if (b.date_created > a.date_created) {
-				return -1;
-			} else if (b.date_created < a.date_created) {
-				return 1;
-			} else {
-				return 0;
-			}
-		});
+		lines.forEach(function (data) { linesArr.push(data); });
+		linesArr.sort(function(a, b) { return b.date_created > a.date_created ? -1 : b.date_created < a.date_created ? 1 : 0;	});
 
 		return linesArr;
 	};
