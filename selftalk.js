@@ -26,6 +26,7 @@ if (Meteor.isClient) {
 	};
 
 	Template.line_output.lines = function () {
+		// Get the most recently created N lines by sorting in reverse-chronological order
 		/* FIXME: This assumes that every single element in the DB has a date_created, but what if that isn't true? For example, when the
 		 * app was first written, that field didn't exist. */
 		var lines = Lines.find({}, {fields: {text: 1, date_created: 1}, sort: {date_created: -1}, limit: 20});
