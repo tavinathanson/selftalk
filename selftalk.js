@@ -9,13 +9,21 @@ Lines = new Meteor.Collection("lines");
 // TODO: Consider using Collection2 to handle this type of thing, rather than manually writing these validation functions
 Lines.allow({
   insert: function (userId, line) {
-		return line.text.length <= constants.getMaxLineLength();
+			// TODO: Is this necessary? I'm confused about client-side vs. server-side when it comes to allow/deny functions.
+			var trimmed = $.trim(line.text);
+			if (trimmed.length == 0 | trimmed.length > constants.getMaxLineLength()) { return false; }
 	}
 });
 
 if (Meteor.isClient) {
 	Template.line_input.events({
 		'submit' : function() {
+			/* Trim the whitespace off the input, and short-circuit if the input is empty or too long
+			 * (without clearing the text field or submitting).
+			 * TODO: Need any error messages around this? */
+			var trimmed = $.trim(line.value);
+			if (trimmed.length == 0 | trimmed.length > constants.getMaxLineLength()) { return false; }
+
 			Lines.insert({date_created: new Date(), text: line.value});
 
 			// Clear the text field, and prevent the page from reloading on submit
