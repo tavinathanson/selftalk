@@ -31,10 +31,22 @@ if (Meteor.isClient) {
 		// TODO: For performance reasons, specify the fields I want in the find()
 		var lines = Lines.find({}, {sort: {date_created: -1}, limit: 20});
 
-		// FIXME: Need to actually reverse these lines, now
-		var reverseLines = lines;
+		// TODO: Simplify the code below
+		var linesArr = new Array();
+		lines.forEach(function (data) {
+			linesArr.push(data);
+		});
+		linesArr.sort(function(a, b) {
+			if (b.date_created > a.date_created) {
+				return -1;
+			} else if (b.date_created < a.date_created) {
+				return 1;
+			} else {
+				return 0;
+			}
+		});
 
-		return reverseLines;
+		return linesArr;
 	};
 }
 
