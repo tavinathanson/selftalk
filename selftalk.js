@@ -68,7 +68,9 @@ if (Meteor.isClient) {
 	Template.line_input.max_length = constants.getMaxLineLength();
 
 	// FIXME: Make this do something useful
-	var handle = Meteor.subscribeWithPagination('lines', 10);
+	Template.line_output.lines_paginated = function() {
+  	return Meteor.subscribeWithPagination('lines', 10);
+	}
 }
 
 if (Meteor.isServer) {
