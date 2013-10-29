@@ -66,10 +66,18 @@ if (Meteor.isClient) {
 	};
 
 	Template.line_input.max_length = constants.getMaxLineLength();
+
+	// FIXME: Make this do something useful
+	var handle = Meteor.subscribeWithPagination('lines', 10);
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // No startup code, currently.
   });
+
+	// FIXME: Make this do something useful
+	Meteor.publish('posts', function(limit) {
+		return Lines.find({}, {limit: limit});
+	});
 }
